@@ -15,7 +15,7 @@ class User < Sequel::Model
 
     def password=(password)
         @password_digest = password
-        self.password_digest = Bcrypt::Password.create(password_digest)
+        self.password_digest = BCrypt::Password.create(password_digest)
     end
 
     def authenticate(password)
