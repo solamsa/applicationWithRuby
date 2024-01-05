@@ -2,6 +2,7 @@ require 'pg'
 require 'sequel'
 require_relative 'connectDatabase.rb'
 
+DB = ConnectDB.connect
 begin
   DB.create_table :users do
     primary_key :id
