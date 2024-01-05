@@ -5,6 +5,7 @@ require_relative 'connectDatabase.rb'
 
 Sequel::Model.plugin :validation_helpers
 class User < Sequel::Model
+  include BCrypt
   def validate
     super
     validates_presence :username
@@ -19,6 +20,9 @@ class User < Sequel::Model
   end
 
   def authenticate(password)
-    BCrypt::Password.new(password_digest) == password
+    stored_password = BCrypt::Password.new(password_digest)
+    puts "Stored Password: #{stored_password}"
+    puts "Provided Password: #{password}"
+    stored_password == password
   end
 end
