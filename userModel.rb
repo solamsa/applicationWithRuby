@@ -3,6 +3,7 @@ require 'bcrypt'
 require 'pg'
 require_relative 'connectDatabase.rb'
 
+ConnectDB.connect
 Sequel::Model.plugin :validation_helpers
 class User < Sequel::Model
   include BCrypt
