@@ -15,15 +15,13 @@ class User < Sequel::Model
     validates_unique :email
     end
 
-  def password=(password)
-    @password_digest = password
-    self.password_digest = BCrypt::Password.create(password_digest)
+  def password=(new_password)
+    @password = BCrypt::Password.create(new_password)
+     self.password_hash = @password
   end
 
-  def authenticate(password)
-    stored_password = BCrypt::Password.new(password_digest)
-    puts "Stored Password: #{stored_password}"
-    puts "Provided Password: #{password}"
-    stored_password == password
+  def authenticate(user_password)
+    stored_password = BCrypt::Password.new(password_hash)
+    return stored_password == user_password
   end
 end
