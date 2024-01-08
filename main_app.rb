@@ -14,14 +14,16 @@ loop do
     email = gets.chomp
     print "Enter password: "
     password = gets.chomp
-    Authentication.register(username, email, password)
+    result = Authentication.register(username, email, password)
+    puts result
 
   when '2'
     print "Enter username: "
     username = gets.chomp
     print "Enter password: "
     password = gets.chomp
-    Authentication.login(username, password)
+    result = Authentication.login(username, password)
+    puts result
 
   when '3'
     break
