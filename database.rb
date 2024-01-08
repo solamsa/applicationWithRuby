@@ -8,7 +8,7 @@ begin
     primary_key :id
     String :username, size: 255, null: false
     String :email, size: 255, null: false
-    String :password_digest, size: 255, null: false
+    String :password_hash, size: 255, null: false
   end
 rescue Sequel::DatabaseError => e 
   puts e.message
