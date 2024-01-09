@@ -1,4 +1,4 @@
-require 'bcrypt'
+require_relative 'requirements.rb'
 require_relative 'userModel'
 
 class Authentication 
