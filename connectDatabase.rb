@@ -1,4 +1,4 @@
-require 'sequel'
+require_relative 'requirements.rb'
 
 class ConnectDB
   def self.connect
