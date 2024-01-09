@@ -1,6 +1,4 @@
-require 'sequel'
-require 'bcrypt'
-require 'pg'
+require_relative 'requirements.rb'
 require_relative 'connectDatabase.rb'
 
 ConnectDB.connect
