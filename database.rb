@@ -1,5 +1,4 @@
-require 'pg'
-require 'sequel'
+require_relative 'requirements.rb'
 require_relative 'connectDatabase.rb'
 
 DB = ConnectDB.connect
