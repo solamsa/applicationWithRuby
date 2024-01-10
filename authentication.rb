@@ -1,5 +1,5 @@
 require_relative 'requirements.rb'
-require_relative 'userModel'
+require_relative 'models/userModel'
 
 class Authentication 
   def self.register(username, email, password)
