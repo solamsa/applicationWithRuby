@@ -4,6 +4,10 @@ require_relative '../connectDatabase.rb'
 ConnectDB.connect
 Sequel::Model.plugin :validation_helpers
 class User < Sequel::Model
+
+  one_to_many :favourites
+  one_to_many :ratings
+
   include BCrypt
   def validate
     super
