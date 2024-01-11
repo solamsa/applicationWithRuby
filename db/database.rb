@@ -1,5 +1,6 @@
 require_relative '../requirements.rb'
 require_relative '../connectDatabase.rb'
+require 'sequel'
 
 DB = ConnectDB.connect
 
@@ -9,7 +10,7 @@ module SQL
     def self.create_users
       begin
         DB.create_table :users do
-          primary_key :id
+          column :user_id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
           String :username, size: 255, null: false
           String :email, size: 255, null: false
           String :password_hash, size: 255, null: false
@@ -26,9 +27,10 @@ module SQL
     def self.create_movies
       begin
         DB.create_table :movies do
-          primary_key :movie_id
+          column :movie_id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
           String :imdb_id, size: 15, null: false
           String :title, size: 255, null: false
+          String :year, size:255
           String :type, size: 255
           String :genre, size: 255
           String :description, text: true
@@ -46,12 +48,13 @@ module SQL
     def self.create_ratings
       begin
         DB.create_table :ratings do
-          primary_key :rating_id
-          foreign_key :user_id, :users, key: :id, on_delete: :cascade
-          foreign_key :movie_id, :movies, key: :movie_id, on_delete: :cascade
+          column :rating_id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
+          foreign_key :user_id, :users,type: :uuid, key: :user_id, on_delete: :cascade
+          foreign_key :movie_id, :movies,type: :uuid, key: :movie_id, on_delete: :cascade
           Float :rating, null: false
           String :review, text: true
           DateTime :created_at, default: Sequel::CURRENT_TIMESTAMP
+          unique [:user_id, :movie_id]
       end
       rescue Sequel::DatabaseError => e 
         puts e.message
@@ -65,9 +68,11 @@ module SQL
     def self.create_favourites
       begin
         DB.create_table :favourites do
-          primary_key :favorite_id
-          foreign_key :user_id, :users, key: :id, on_delete: :cascade
-          foreign_key :movie_id, :movies, key: :movie_id, on_delete: :cascade
+          column :favourite_id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
+          foreign_key :user_id, :users, type: :uuid, key: :user_id, on_delete: :cascade
+          foreign_key :movie_id, :movies, type: :uuid, key: :movie_id, on_delete: :cascade
+          DateTime :deleted_at
+          unique [:user_id, :movie_id]
       end
       rescue Sequel::DatabaseError => e 
         puts e.message
