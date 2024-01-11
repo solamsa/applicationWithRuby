@@ -10,18 +10,18 @@ let(:output) { StringIO.new }
   end
 
   after(:all) do
-    SQL::ManupulateData.remove_user_by_username("test_user")
+    SQL::ManupulateData.remove_user_by_username("b_user")
   end
 
   describe '.register' do
     it 'registers a user successfully' do
-      result = Authentication.register('test_user','test@gmail.com', 'testpass')
+      result = Authentication.register('b_user','b@gmail.com', 'testpass')
       expect(result).to eq("Registration successful")
       # SQL::ManupulateData.remove_user_by_username("test_user")
     end
 
     it 'fails to register a user with invalid data' do
-      result = Authentication.register('test_user', 'test@example.com', 'password123')
+      result = Authentication.register('b_user', 'b@example.com', 'password123')
       expect(result).to eq("Registration failed. username is already taken")
     end 
   end
@@ -29,7 +29,7 @@ let(:output) { StringIO.new }
   describe '.login' do
     it 'logs in successfully with correct credentials' do
       # Assuming you have registered a user with these credentials first
-      result = Authentication.login('test_user', 'testpass')
+      result = Authentication.login('b_user', 'testpass')
       expect(result).to eq("Login successful!")
     end
 
