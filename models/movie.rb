@@ -1,7 +1,6 @@
 require_relative '../requirements.rb'
 require_relative '../connectDatabase.rb'
 
-ConnectDB.connect
 Sequel::Model.plugin :validation_helpers
 class Movie < Sequel::Model
 
