@@ -7,7 +7,6 @@ gem 'pg'
 gem 'rspec'
 gem 'httparty'
 gem 'pry'
-gem 'aws-sdk'
 group :test do
-  gem 'database_cleaner'
+  gem 'database_cleaner-sequel'
 end
