@@ -1,6 +1,6 @@
-require_relative '../requirements.rb'
-require_relative '../connectDatabase.rb'
+require 'pg'
 require 'sequel'
+require_relative '../connectDatabase.rb'
 
 DB = ConnectDB.connect
 
@@ -100,7 +100,7 @@ module SQL
 end
 
 
-# SQL::CreateTables.create_users
+SQL::CreateTables.create_users
 # SQL::CreateTables.create_movies
 # SQL::CreateTables.create_favourites
 # SQL::CreateTables.create_ratings
