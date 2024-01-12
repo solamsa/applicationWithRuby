@@ -1,4 +1,4 @@
-require_relative '../loader.rb'
+require 'spec_helper'
 require 'rspec'
 require 'stringio'
 
@@ -9,9 +9,9 @@ let(:output) { StringIO.new }
     allow($stdout).to receive(:puts) {|msg| output.puts(msg)}
   end
 
-  after(:all) do
-    SQL::ManupulateData.remove_user_by_username("b_user")
-  end
+  # after(:all) do
+  #   SQL::ManupulateData.remove_user_by_username("b_user")
+  # end
 
   describe '.register' do
     it 'registers a user successfully' do
