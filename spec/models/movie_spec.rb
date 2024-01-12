@@ -1,4 +1,4 @@
-require '../loader.rb'
+require 'spec_helper'
 require 'rspec'
 
 describe Movie do
