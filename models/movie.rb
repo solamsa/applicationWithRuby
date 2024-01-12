@@ -4,7 +4,7 @@ require_relative '../connectDatabase.rb'
 Sequel::Model.plugin :validation_helpers
 class Movie < Sequel::Model
 
-  one_to_many :favourites
+  one_to_many :favourites 
   one_to_many :ratings
   
   def validate
