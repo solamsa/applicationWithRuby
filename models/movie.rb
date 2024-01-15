@@ -14,4 +14,7 @@ class Movie < Sequel::Model
     validates_presence :title
   end
   
+  # dataset module do
+  #   def all_movies
+  #     select(:id, :title)
 end
