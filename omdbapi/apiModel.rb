@@ -13,17 +13,3 @@ class ApiModel
     self.class.get('/', options)
   end
 end
-
-api_key = '2fee9ad3'
-api_model = ApiModel.new(api_key)
-
-response = api_model.search_movie('Inception')
-
-if response['Response'] == 'True'
-  movies = response['Search']
-  movies.each do |movie|
-    puts "#{movie['Title']} (#{movie['Year']})"
-  end
-else
-  puts "Error: #{response['Error']}"
-end
