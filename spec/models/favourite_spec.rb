@@ -8,8 +8,8 @@ describe Favourite do
     it 'is valid with valid attributes' do
       user =  User.create(username: 'asp_user', email: 'asp_user@example.com', password: 'password')
       movie = Movie.create(imdb_id: "tt1375665", title: 'Test_Movie', year: "2010")
-      rating = Favourite.new(user: user, movie: movie)
-      expect(rating).to be_valid
+      favourite = Favourite.new(user: user, movie: movie)
+      expect(favourite).to be_valid
     end
 
     it 'is invalid without a rating' do
