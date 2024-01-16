@@ -1,4 +1,4 @@
-require_relative 'authentication'
+require_relative 'features/authentication'
 require 'json'
 require_relative 'app_options'
 
