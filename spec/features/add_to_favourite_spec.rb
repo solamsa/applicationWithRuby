@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'rspec'
 require 'stringio'
+require 'pry'
 
 RSpec.describe SaveMovie do
 let(:output) { StringIO.new }
@@ -22,7 +23,8 @@ let(:output) { StringIO.new }
       find_movie = FindMovie.new
       find_movie.find_movies("ABC%")
       movie = find_movie.get_movies.first
-      add_to_favourites = AddToFavourites.save(movie)
+      movie_instance = Movie[movie[:movie_id]]
+      result = AddToFavourites.save(movie_instance)
       expect(result).to eq("Successfully saved a movie to favourites")
     end
   end
