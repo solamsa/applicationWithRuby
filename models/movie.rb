@@ -6,7 +6,8 @@ class Movie < Sequel::Model
 
   one_to_many :favourites 
   one_to_many :ratings
-  
+  set_primary_key :movie_id
+  unrestrict_primary_key
   def validate
     super
     validates_presence :imdb_id
