@@ -3,6 +3,7 @@ require_relative 'omdbapi/apiModel'
 require_relative 'features/save_movie'
 require_relative 'models/movie'
 require_relative 'features/find_movie'
+require 'pry'
 
 require 'json'
  
@@ -52,6 +53,7 @@ class AppOptions
         result = @@find_movie.find_movies(movie_search)
         puts "#{result}\n"
         @@find_movie.show_movies
+        # binding.pry
         puts "Do you want to add a movie to favourites[y/n]"
         answer = gets.chomp.downcase
         if answer == "y" || answer == "yes"
