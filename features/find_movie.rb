@@ -5,6 +5,7 @@ require_relative '../features/add_to_favourites'
 require_relative '../features/rate_movie'
 require_relative '../models/movie'
 require 'pry'
+require 'colorize'
 
 class FindMovie
 
@@ -27,9 +28,9 @@ class FindMovie
 
   def show_movies
     @@movie_num = 0
-    puts "\e[found list\e[0m"
+    puts "found some movies".bold
     @@movies.each do |movie|
-      puts"no #{@@movie_num} #{movie}"
+      puts"no #{@@movie_num} #{movie[:title].red} #{movie[:year].yellow}"
       @@movie_num =  @@movie_num + 1
     end
   end
