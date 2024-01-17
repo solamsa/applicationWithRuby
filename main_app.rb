@@ -28,9 +28,14 @@ class MyApp
         print "Enter password: "
         password = gets.chomp
         result = Authentication.login(username, password)
+        current_user = Authentication.current_user
         puts result
         app_options = AppOptions.new
-        app_options.operate
+        if current_user
+          app_options.operate
+        else
+          runApp
+        end
 
       when '3'
         result = Authentication.logout
