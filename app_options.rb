@@ -3,6 +3,7 @@ require_relative 'omdbapi/apiModel'
 require_relative 'features/save_movie'
 require_relative 'models/movie'
 require_relative 'features/find_movie'
+
 require 'json'
  
 class AppOptions
@@ -18,8 +19,7 @@ class AppOptions
         
       case choice
       when '1'
-        
-
+      
         puts "Search the movie to add"
         movie_search = gets.chomp
         response = @@api_model.search_movie(movie_search)
@@ -28,7 +28,8 @@ class AppOptions
         if response['Response'] == 'True'
           movies = response['Search']
           movies.each do |movie|
-            puts "no .#{i} #{movie}\n\n)"
+            puts "=======================================\n"
+            puts "no .#{i} #{movie}\n\n"
             i = i+1
         end
 
@@ -51,6 +52,17 @@ class AppOptions
         result = @@find_movie.find_movies(movie_search)
         puts "#{result}\n"
         @@find_movie.show_movies
+        puts "Do you want to add a movie to favourites[y/n]"
+        answer = gets.chomp.downcase
+        if answer == "y" || answer == "yes"
+          @@find_movie.want_add_favourite
+        end
+
+        puts "Do you want to rate a movie[y/n]"
+        answer = gets.chomp.downcase
+        if answer == "y" || answer == "yes"
+          @@find_movie.want_rate
+        end
       when '3'
         result = Authentication.logout
         puts result
