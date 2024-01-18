@@ -14,9 +14,9 @@ class Authentication
     if user.valid?
       user.save
       @@current_user = user
-      return "Registration successful"
+      return "Registration successful ✅"
     else
-      return "Registration failed. #{user.errors.full_messages.join(', ')}"
+      return "Registration failed. #{user.errors.full_messages.join(', ')} ❌"
     end
   end
 
@@ -24,9 +24,9 @@ class Authentication
     user = User.find(username: username)
     if user && user.authenticate(password)
       @@current_user = user
-      return "Login successful!"
+      return "Login successful! ✅"
     else
-      return "Login failed. Invalid username or password."
+      return "Login failed. Invalid username or password. ❌"
     end
   end
 
