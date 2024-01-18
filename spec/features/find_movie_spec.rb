@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'rspec'
 require 'stringio'
+require 'colorize'
 
 RSpec.describe FindMovie do
 let(:output) { StringIO.new }
@@ -20,13 +21,13 @@ let(:output) { StringIO.new }
   describe '.save' do
     it 'finds a movie successfully' do
       find_movie = FindMovie.new
-      result = find_movie.get_movies("ABC%")
-      expect(result).to eq("Successfully found related movies")
+      result = find_movie.find_movies("ABC%")
+      expect(result).to eq("Successfully found related movies".bold)
     end
 
     it 'no match found' do
       find_movie = FindMovie.new
-      result = find_movie.get_movies("ECD%")
+      result = find_movie.find_movies("ECD%")
       expect(result).to eq("No matching movies")
     end
   end
