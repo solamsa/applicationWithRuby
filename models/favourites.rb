@@ -1,5 +1,6 @@
 require_relative '../requirements.rb'
 require_relative '../connectDatabase.rb'
+require_relative '../features/authentication'
 
 class Favourite < Sequel::Model
 
@@ -13,5 +14,9 @@ class Favourite < Sequel::Model
     validates_presence :user
     validates_presence :movie
     validates_unique [:user_id, :movie_id]
+  end
+
+  def self.favourites
+    where(user: Authentication.current_user)
   end
 end
