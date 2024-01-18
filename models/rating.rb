@@ -14,5 +14,9 @@ class Rating < Sequel::Model
     validates_includes (1..5), :rating
     validates_unique [:user_id, :movie_id]
   end
+  def self.average_rating_for_movie(movie_id)
+    average_rating = where(movie_id: movie_id).avg(:rating)
+    average_rating || 0
+  end
 
 end
