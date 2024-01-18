@@ -14,8 +14,4 @@ class Movie < Sequel::Model
     validates_unique :imdb_id
     validates_presence :title
   end
-  
-  # dataset module do
-  #   def all_movies
-  #     select(:id, :title)
 end
