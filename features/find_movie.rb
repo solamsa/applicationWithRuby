@@ -4,6 +4,7 @@ require_relative '../connectDatabase'
 require_relative '../features/add_to_favourites'
 require_relative '../features/rate_movie'
 require_relative '../models/movie'
+require_relative '../models/rating'
 require 'pry'
 require 'colorize'
 
@@ -20,7 +21,7 @@ class FindMovie
       if @@movies.all.length == 0
         return "No matching movies"
       end
-      return "Successfully found related movies"
+      return "Successfully found related movies".bold
     else
       return "Failed to find related movis"
     end
@@ -28,9 +29,9 @@ class FindMovie
 
   def show_movies
     @@movie_num = 0
-    puts "found some movies".bold
     @@movies.each do |movie|
-      puts"no #{@@movie_num} #{movie[:title].red} #{movie[:year].yellow}"
+      
+      puts"no #{@@movie_num} #{movie[:title].red} #{movie[:year].yellow} rating: #{Rating.average_rating_for_movie(movie[:movie_id])}"
       @@movie_num =  @@movie_num + 1
     end
   end
@@ -49,6 +50,7 @@ class FindMovie
   end
 
   def want_rate
+
     puts "Enter the number corresponding to the movie from found list"
     num = gets.chomp.to_i
     movie = @@movies.all[num]
