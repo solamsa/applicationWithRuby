@@ -1,14 +1,15 @@
 require_relative 'features/authentication'
 require 'json'
 require_relative 'app_options'
+require 'colorize'
 
 class MyApp
 
   def runApp
     loop do
-      puts "1. Register"
-      puts "2. Login"
-      puts "3. Exit"
+      puts "1. Register".blue
+      puts "2. Login".blue
+      puts "3. Exit".red
       choice = gets.chomp
         
       case choice
@@ -29,7 +30,7 @@ class MyApp
         password = gets.chomp
         result = Authentication.login(username, password)
         current_user = Authentication.current_user
-        puts result
+        puts "#{result}"
         app_options = AppOptions.new
         if current_user
           app_options.operate
