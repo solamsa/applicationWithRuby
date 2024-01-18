@@ -2,6 +2,7 @@ require_relative '../features/authentication'
 require_relative '../omdbapi/apiModel'
 require_relative '../features/save_movie'
 require_relative '../models/movie'
+require_relative '../models/favourites'
 require_relative '../features/find_movie'
 require 'pry'
 require 'json'
@@ -86,6 +87,17 @@ module Apptools
 
     def rate
       @@find_movie.want_rate
+    end
+
+    def favourites
+      favourites =  Favourite.favourites.all
+        if favourites.length> 0
+          favourites.each do |favourite|
+            puts favourite
+          end
+        else
+          puts "You currently do not have favourites"
+        end
     end
   end
 end
