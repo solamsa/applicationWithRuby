@@ -4,7 +4,7 @@ require 'rspec'
 describe Movie do
   describe 'validations' do
     it 'is valid with valid attributes' do
-      movie = Movie.new(imdb_id: "tt1375666", title: 'Inception', year: "2010")
+      movie = Movie.new(imdb_id: "tt1375616", title: 'New Movie', year: "2010")
       expect(movie).to be_valid
     end
 
