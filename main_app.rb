@@ -39,8 +39,6 @@ class MyApp
         end
 
       when '3'
-        result = Authentication.logout
-        puts result
         break
 
       else
