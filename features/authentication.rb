@@ -13,7 +13,7 @@ class Authentication
     user = User.new(username: username, email: email, password: password)
     if user.valid?
       user.save
-      @@current_user = user
+      # @@current_user = user
       return "Registration successful ✅"
     else
       return "Registration failed. #{user.errors.full_messages.join(', ')} ❌"
