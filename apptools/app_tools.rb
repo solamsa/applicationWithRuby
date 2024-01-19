@@ -6,6 +6,7 @@ require_relative '../models/favourites'
 require_relative '../features/find_movie'
 require 'pry'
 require 'json'
+require 'colorize'
 
 module Apptools
 
@@ -31,7 +32,7 @@ module Apptools
           i = 0
 
           movies.each do |movie|
-            puts "=======================================\n"
+            puts "=======================================\n".yellow
             puts "no .#{i} #{movie}\n\n"
             i += 1
           end
@@ -40,12 +41,15 @@ module Apptools
           movie_num = gets.chomp.to_i
 
           selected_movie = movies[movie_num.to_i]
-
-          puts "Selected movie: #{selected_movie}"
+          
+          puts "\nSelected movie: #{selected_movie}\n".green
+          puts "\n"
           movie = Movie.new(imdb_id: selected_movie['imdbID'], title: selected_movie['Title'], year: selected_movie['Year'], type: selected_movie['Type'], poster: selected_movie['Poster'])
 
           result = SaveMovie.save(movie)
-          puts result
+
+          puts "\n#{result}\n".grey
+          puts"\n"
         else
           puts "Error: #{response['Error']}"
         end
@@ -66,6 +70,7 @@ module Apptools
 
     def add_favourite
       @@find_movie.want_add_favourite
+      puts"\n"
     end
 
     def search
@@ -90,10 +95,14 @@ module Apptools
     end
 
     def favourites
+      movie_num = 0
       favourites =  Favourite.favourites.all
         if favourites.length> 0
           favourites.each do |favourite|
-            puts favourite
+            movie = Movie[favourite[:movie_id]]
+           puts "#{movie_num} #{movie[:title].green} #{movie[:year].yellow}"
+            # binding.pry
+            movie_num = movie_num + 1
           end
         else
           puts "You currently do not have favourites"
