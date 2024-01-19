@@ -108,5 +108,17 @@ module Apptools
           puts "You currently do not have favourites"
         end
     end
+
+    def remove_favourite
+      favourites =  Favourite.favourites.all
+      if favourites.length>0
+        puts "Select number corresponding to the movie to remove"
+        num = gets.chomp.to_i
+        favourite = favourites[num]
+        favourite[:deleted_at] = Time.now
+        favourite.save
+        puts "Succefully removed movie from favourites"
+      end
+    end
   end
 end
