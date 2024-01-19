@@ -21,7 +21,8 @@ class AppOptions
       puts "3. Add movie to favourites"
       puts "4. Rate a movie"
       puts "5. Your favourites"
-      puts "6. Logout"
+      puts "6. Remove favourite"
+      puts "7. Logout"
       puts"\nOption:" 
       choice = gets.chomp
       puts"\n"   
@@ -51,8 +52,19 @@ class AppOptions
         end
 
       when '5'
-        @@app_tools.favourites
+        begin
+          @@app_tools.favourites
+        rescue StandardError => e
+          puts "An error occurred: #{e.message}".red
+        end
       when '6'
+        begin
+          @@app_tools.favourites
+          @@app_tools.remove_favourite
+        rescue StandardError => e
+          puts "An error occurred: #{e.message}".red
+        end
+      when '7'
         result = Authentication.logout
         puts result
         break
