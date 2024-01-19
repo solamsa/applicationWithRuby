@@ -59,6 +59,8 @@ class FindMovie
     puts "Enter your rating from range 1-5"
     num = gets.chomp.to_f
     result = RateMovie.save(movie_instance, num) 
+    puts"\n"
     puts result
+    puts"\n"
   end
 end
