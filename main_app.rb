@@ -10,7 +10,9 @@ class MyApp
       puts "1. Register".blue
       puts "2. Login".blue
       puts "3. Exit".red
+      puts"\nOption:" 
       choice = gets.chomp
+      puts"\n"
         
       case choice
       when '1'
@@ -21,7 +23,8 @@ class MyApp
         print "Enter password: "
         password = gets.chomp
         result = Authentication.register(username, email, password)
-        puts result
+        puts "\n#{result}\n"
+        puts "\n"
 
       when '2'
         print "Enter username: "
@@ -30,7 +33,8 @@ class MyApp
         password = gets.chomp
         result = Authentication.login(username, password)
         current_user = Authentication.current_user
-        puts "#{result}"
+        puts "\n#{result}\n"
+        puts "\n"
         app_options = AppOptions.new
         if current_user
           app_options.operate
