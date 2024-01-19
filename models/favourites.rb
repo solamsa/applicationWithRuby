@@ -17,6 +17,7 @@ class Favourite < Sequel::Model
   end
 
   def self.favourites
-    where(user: Authentication.current_user)
+    where(user: Authentication.current_user,deleted_at: nil)
   end
+  
 end
